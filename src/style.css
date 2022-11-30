@@ -1,6 +1,10 @@
 body {
     margin: 0;
     padding: 0;
+    color: white;
+    font-family: sans-serif;
+    height: 100%;
+    min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 6fr;
     grid-template-rows: 1fr 6fr;
@@ -10,16 +14,20 @@ body {
 }
 
 .header {
-    background-color: pink;
+    background-color: #e76f51;
     grid-area: header;
 }
 
 .nav {
-    background-color: blue;
+    background-color: #264653;
     grid-area: nav;
 } 
 
+ul {
+    list-style: none;
+}
+
 .project-container {
-    background-color: green;
+    background-color: #e9c46a;
     grid-area: project-container;
 }
