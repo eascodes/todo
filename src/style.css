@@ -21,6 +21,7 @@ body {
 .header {
     background-color: #e76f51;
     grid-area: header;
+    text-align: center;
 }
 
 .nav {
@@ -30,6 +31,11 @@ body {
 
 ul {
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 1.3rem;
+    padding-left: 15px;
 }
 
 .project-container {
