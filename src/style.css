@@ -41,4 +41,20 @@ ul {
 .project-container {
     background-color: #e9c46a;
     grid-area: project-container;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    background-color: #2a9d8f;
+    width: 250px;
+    height: 250px;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 5px;
+}
+
+h3 {
+    margin: 0;
 }
