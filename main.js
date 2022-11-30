@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log("making to do"),console.log("Making project")})();
