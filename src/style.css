@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    grid-template-rows: 1fr 6fr;
+    grid-template-areas: 
+        "header header"
+        "nav project-container";
+}
+
+.header {
+    background-color: pink;
+    grid-area: header;
+}
+
+.nav {
+    background-color: blue;
+    grid-area: nav;
+} 
+
+.project-container {
+    background-color: green;
+    grid-area: project-container;
+}
