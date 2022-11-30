@@ -1,17 +1,20 @@
 import { makeToDo, addToDo, deleteToDo, changeStatus, changePriority } from './to-dos.js';
 import { makeProject } from './project-generator.js';
 import './style.css';
+import { showToDoForm } from './to-doform.js';
 
+//TESTING//
 const careForDog = makeProject("Take Care of a Dog");
 const feedCopper = makeToDo("Feed Copper", "Give Copper 2 cups of food", "12/1/22", 0);
 const waterCopper = makeToDo("Water Copper", "Give Copper 2 cups of water", "11/30/22", 1);
 const medCopper = makeToDo("Medicate Copper", "Give Copper 1 tablet", "12/20/22", 1);
 
-//TESTING//
 addToDo(careForDog, feedCopper);
 addToDo(careForDog, waterCopper);
 addToDo(careForDog, medCopper);
 
+
+//BUILD THE CARDS//
 function makeCard(obj) {
     const card = document.createElement("div");
     card.classList.add("card");
@@ -44,3 +47,7 @@ function addCard(card) {
 }
 
 addCard(firstProj);
+
+//EVENT LISTENERS//
+const addToDoButton = document.querySelector(".nav>ul>li+li");
+addToDoButton.addEventListener("click", showToDoForm);
