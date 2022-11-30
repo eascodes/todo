@@ -12,14 +12,23 @@ addToDo(careForDog, feedCopper);
 addToDo(careForDog, waterCopper);
 addToDo(careForDog, medCopper);
 
-
 function makeCard(obj) {
     const card = document.createElement("div");
     card.classList.add("card");
     const projectTitle = document.createElement("h3");
-    
     projectTitle.textContent = obj.title;
     card.appendChild(projectTitle);
+
+    const listContainer = document.createElement("div");
+    card.appendChild(listContainer);
+    for(let i=0; i<obj.list.length; i++) {
+        const toDoTitle = document.createElement("p");
+        const toDoDate = document.createElement("p");
+        toDoTitle.textContent = obj.list[i].title;
+        toDoDate.textContent = obj.list[i].dueDate;
+        listContainer.appendChild(toDoTitle);
+        listContainer.appendChild(toDoDate);
+    }
     return card;
 }
 
@@ -31,9 +40,3 @@ function addCard(card) {
 }
 
 addCard(firstProj);
-
-
-// function makeToDoTitle() {
-//     const toDoTitle = document.createElement("p");
-//     const toDoDate = document.createElement("p");
-// }
