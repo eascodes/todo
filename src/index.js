@@ -21,13 +21,17 @@ function makeCard(obj) {
 
     const listContainer = document.createElement("div");
     card.appendChild(listContainer);
+    const toDoList = document.createElement("ul");
+    listContainer.appendChild(toDoList);
     for(let i=0; i<obj.list.length; i++) {
+        const toDoLine = document.createElement("li");
+        toDoList.appendChild(toDoLine);
         const toDoTitle = document.createElement("p");
         const toDoDate = document.createElement("p");
         toDoTitle.textContent = obj.list[i].title;
         toDoDate.textContent = obj.list[i].dueDate;
-        listContainer.appendChild(toDoTitle);
-        listContainer.appendChild(toDoDate);
+        toDoLine.appendChild(toDoTitle);
+        toDoLine.appendChild(toDoDate);
     }
     return card;
 }
