@@ -3,20 +3,21 @@ import { makeProject } from './project-generator.js';
 import './style.css';
 import { showToDoForm } from './to-doform.js';
 
+export let projectList = [];
+
 export const loadPage = () => {
+
     //DEFAULT PROJECT//
-    const BackpackTrip = makeProject("Prep for Backpacking Trip");
+    let backpackTrip = makeProject("Prep for Backpacking Trip");
     const planRoute = makeToDo("Plan route", "Use guidebook to plan hiking route", "4/1/23", 1);
     const planMeals = makeToDo("Plan meals", "Plan meals to meet calorie needs", "4/7/23", 0);
     const packGear = makeToDo("Pack gear", "Pack gear needed for 10 day trip", "4/14/23", 1);
 
-    addToDo(BackpackTrip, planRoute);
-    addToDo(BackpackTrip, planMeals);
-    addToDo(BackpackTrip, packGear);
+    addToDo(backpackTrip, planRoute);
+    addToDo(backpackTrip, planMeals);
+    addToDo(backpackTrip, packGear);
 
-    //SET PROJECT LIST
-    const projectList = [BackpackTrip];
-
+    projectList.push(backpackTrip);
 
     //BUILD THE CARDS//
     function makeCard(obj) {
@@ -54,5 +55,5 @@ export const loadPage = () => {
             addCard(newCard);
         }
     })();
-
+    return projectList;
 }

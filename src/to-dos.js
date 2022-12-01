@@ -1,3 +1,22 @@
+import { loadPage } from './pgload.js';
+
+
+
+export const saveToDo = () => {
+    const title = document.querySelector("#newTitle").value;
+    const desc = document.querySelector("#desc").value;
+    const date = document.querySelector("#date").value;
+    let priority = "";
+    let priorityResult = document.getElementsByName("priority");
+    for(let i = 0; i < priorityResult.length; i++) {
+        if(priorityResult[i].checked) {
+            priority = priorityResult[i].value;
+        }
+    }
+    const newToDo = makeToDo(title, desc, date, priority);
+    return newToDo;
+}
+
 export const makeToDo = (title, description, dueDate, priority) => {
     let status = 0;
     return { title, description, dueDate, priority, status };

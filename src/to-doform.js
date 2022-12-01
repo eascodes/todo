@@ -1,11 +1,12 @@
 import { clearContent } from "./clear";
+import { saveToDo } from "./to-dos";
+import { loadPage } from "./pgload";
+import { projectList } from "./pgload";
 
 export const showToDoForm = () => {
     clearContent();
     buildToDoForm();
 }
-
-
 
 const buildToDoForm = () => {
     //Build form container & title
@@ -16,17 +17,43 @@ const buildToDoForm = () => {
     container.appendChild(form);
     form.appendChild(title);
     form.setAttribute("id", "newToDoForm");
+    form.setAttribute("action", "");
+    form.setAttribute("method", "post");
     const div = document.createElement("div");
     form.appendChild(div);
     const list = document.createElement("ul");
     div.appendChild(list);
 
-    
+    console.log(projectList);
 
+    //Build questions
     buildTextInput(list, "firstItem", "newTitle", "To Do Item Title", "input1", "text");
     buildTextInput(list, "secItem", "desc", "Description", "input2", "text");
     buildTextInput(list, "thirdItem", "date", "Due Date", "input3", "date");
     buildRadioInput(list, "priority", "high-priority", "High Priority", "input4", "high", "low-priority", "Low Priority", "input5", "low");
+
+    //Build project question
+    //const projectList = loadPage();
+    const liName = document.createElement("li");
+    const select = document.createElement("select");
+    select.setAttribute("name", "Project");
+    list.appendChild(liName);
+    liName.appendChild(select);
+    for(let i=0; i < projectList.length; i++) {
+        console.log(projectList[i].title);
+        const option = document.createElement("option");
+        option.setAttribute("value",projectList[i].title);
+        option.textContent = projectList[i].title;
+        select.appendChild(option);
+    }
+
+    //Build submit button
+    const button = document.createElement("button");
+    button.setAttribute("type", "submit");
+    button.textContent = "Submit";
+    button.setAttribute("id", "submit-todo");
+    div.appendChild(button);
+    form.addEventListener("submit", saveToDo);
 }
 
 const buildTextInput = (container, liName, labelName, textContent, inputName, inputType) => {
@@ -44,10 +71,9 @@ const buildTextInput = (container, liName, labelName, textContent, inputName, in
 }
 
 const buildRadioInput = (container, category, label1, text1, input1, value1, label2, text2, input2, value2) => {
-        
     const liName = document.createElement("li");
     container.appendChild(liName);
-    
+
     const buildRadioOption = (category, label, text, input, value) => {
         const newLabel = document.createElement("label");
         newLabel.setAttribute("for", label);
@@ -61,6 +87,6 @@ const buildRadioInput = (container, category, label1, text1, input1, value1, lab
         liName.appendChild(input);
     }
 
-    buildRadioOption(container, category, label1, text1, input1, value1);
-    buildRadioOption(container, category, label2, text2, input2, value2);
+    buildRadioOption(category, label1, text1, input1, value1);
+    buildRadioOption(category, label2, text2, input2, value2);
 }
