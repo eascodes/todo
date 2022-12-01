@@ -1,4 +1,4 @@
-import { loadPage } from './pgload.js';
+import { loadPage, projectList } from './pgload.js';
 
 
 
@@ -13,8 +13,14 @@ export const saveToDo = () => {
             priority = priorityResult[i].value;
         }
     }
-    const newToDo = makeToDo(title, desc, date, priority);
-    return newToDo;
+    let project = document.querySelector("#select-option").value;
+    for (let i=0; i<projectList.length; i++) {
+        if (project == projectList[i].title) {
+            project = projectList[i];
+        }
+    }
+    let newToDo = makeToDo(title, desc, date, priority, project);
+    addToDo(project, newToDo);
 }
 
 export const makeToDo = (title, description, dueDate, priority) => {
@@ -24,6 +30,7 @@ export const makeToDo = (title, description, dueDate, priority) => {
 
 export const addToDo = (project, toDo) => {
     project.list.push(toDo);
+    loadPage();
 }
 
 export const deleteToDo = (project, toDo) => {

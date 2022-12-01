@@ -7,5 +7,8 @@ import { loadPage } from './pgload.js';
 loadPage();
 
 //EVENT LISTENERS//
+const homeButton = document.querySelector(".nav>ul>li");
+homeButton.addEventListener("click", loadPage);
+
 const addToDoButton = document.querySelector(".nav>ul>li+li");
 addToDoButton.addEventListener("click", showToDoForm);

@@ -24,8 +24,6 @@ const buildToDoForm = () => {
     const list = document.createElement("ul");
     div.appendChild(list);
 
-    console.log(projectList);
-
     //Build questions
     buildTextInput(list, "firstItem", "newTitle", "To Do Item Title", "input1", "text");
     buildTextInput(list, "secItem", "desc", "Description", "input2", "text");
@@ -33,14 +31,13 @@ const buildToDoForm = () => {
     buildRadioInput(list, "priority", "high-priority", "High Priority", "input4", "high", "low-priority", "Low Priority", "input5", "low");
 
     //Build project question
-    //const projectList = loadPage();
     const liName = document.createElement("li");
     const select = document.createElement("select");
     select.setAttribute("name", "Project");
+    select.setAttribute("id", "select-option");
     list.appendChild(liName);
     liName.appendChild(select);
     for(let i=0; i < projectList.length; i++) {
-        console.log(projectList[i].title);
         const option = document.createElement("option");
         option.setAttribute("value",projectList[i].title);
         option.textContent = projectList[i].title;
