@@ -7,6 +7,7 @@ import { showToDoForm } from './to-doform.js';
 
 export const loadPage = () => {
     clearContent();
+    console.log(localStorage);
 
     if (localStorage.length === 0) {
 
@@ -62,7 +63,6 @@ export const loadPage = () => {
 
     (function createCardDisplay() {
         for (let i=0; i < localStorage.length; i++) {
-            //console.log(JSON.parse(localStorage.getItem(localStorage.key(i))));
             const newCard = makeCard(JSON.parse(localStorage.getItem(localStorage.key(i))));
             addCard(newCard);
         }

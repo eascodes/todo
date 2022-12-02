@@ -48,9 +48,8 @@ const buildProjectForm = () => {
 
 const saveToLocalStorage = (input) => {
     let emptyObj = {
-        list: "",
-        title: ""
+        list: [""],
+        title: input.value
     }
     localStorage.setItem(input.value, JSON.stringify(emptyObj));
-    //console.log(localStorage);
 }
