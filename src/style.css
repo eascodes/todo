@@ -38,8 +38,15 @@ body {
     padding-left: 15px;
 }
 
+.nav ul li:hover {
+    cursor: pointer;
+    color: #ffd56b;
+}
+
+/*MAIN PROJECTS DISPLAY*/
+
 .project-container {
-    background-color: #e9c46a;
+    /*background-color: #e9c46a;*/
     grid-area: project-container;
     padding: 20px;
     display: flex;
@@ -71,4 +78,25 @@ body {
 
 .card p {
     margin: 0;
+}
+
+/*FORMS*/
+
+form {
+    background-color: #2a9d8f;
+    padding: 20px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+form h3 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 1.6rem;
 }
