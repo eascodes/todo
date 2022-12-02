@@ -1,8 +1,10 @@
-import { loadPage, projectList } from './pgload.js';
+import { loadPage } from './pgload.js';
 
 
 
-export const saveToDo = () => {
+export const saveToDo = (e) => {
+    
+    e.preventDefault();
     const title = document.querySelector("#newTitle").value;
     const desc = document.querySelector("#desc").value;
     const date = document.querySelector("#date").value;
@@ -14,9 +16,9 @@ export const saveToDo = () => {
         }
     }
     let project = document.querySelector("#select-option").value;
-    for (let i=0; i<projectList.length; i++) {
-        if (project == projectList[i].title) {
-            project = projectList[i];
+    for (let i=0; i<localStorage.length; i++) {
+        if (project == JSON.parse(localStorage.getItem(localStorage.key(i))).title) {
+            project = JSON.parse(localStorage.getItem(localStorage.key(i)));
         }
     }
     let newToDo = makeToDo(title, desc, date, priority, project);
@@ -29,7 +31,13 @@ export const makeToDo = (title, description, dueDate, priority) => {
 }
 
 export const addToDo = (project, toDo) => {
-    project.list.push(toDo);
+     for (let i=0; i<localStorage.length; i++) {
+         if (project.title === JSON.parse(localStorage.getItem(localStorage.key(i))).title) {
+            let parsed = JSON.parse(localStorage.getItem(localStorage.key(i)));
+            parsed.list.push(toDo);
+            localStorage.setItem(localStorage.key(i), JSON.stringify(parsed));
+         } 
+     }
     loadPage();
 }
 

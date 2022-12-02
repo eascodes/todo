@@ -4,12 +4,11 @@ import './style.css';
 import { clearContent } from './clear.js';
 import { showToDoForm } from './to-doform.js';
 
-export let projectList = [];
 
 export const loadPage = () => {
     clearContent();
 
-    if (projectList.length === 0) {
+    if (localStorage.length === 0) {
 
         let backpackTrip = {
             list: [
@@ -27,12 +26,8 @@ export const loadPage = () => {
             title: "Love my dog"
         }
 
-        //OLD CODE - DELETE
-        //projectList.push(backpackTrip);
-        //projectList.push(loveDog);
         localStorage.setItem("backpackTrip", JSON.stringify(backpackTrip));
         localStorage.setItem("loveDog", JSON.stringify(loveDog));
-        console.log(localStorage);
     }
 
     //BUILD THE CARDS//
@@ -66,18 +61,10 @@ export const loadPage = () => {
     }
 
     (function createCardDisplay() {
-        //OLD CODE - DELETE
-        // for (let i=0; i < projectList.length; i++) {
-        //     const newCard = makeCard(projectList[i]);
-        //     addCard(newCard);
-        // }
-
         for (let i=0; i < localStorage.length; i++) {
             //console.log(JSON.parse(localStorage.getItem(localStorage.key(i))));
             const newCard = makeCard(JSON.parse(localStorage.getItem(localStorage.key(i))));
             addCard(newCard);
         }
     })();
-    //OLD CODE - DELETE
-    //return projectList;
 }

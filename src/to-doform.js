@@ -1,7 +1,6 @@
 import { clearContent } from "./clear";
 import { saveToDo } from "./to-dos";
 import { loadPage } from "./pgload";
-import { projectList } from "./pgload";
 
 export const showToDoForm = () => {
     clearContent();
@@ -37,10 +36,12 @@ const buildToDoForm = () => {
     select.setAttribute("id", "select-option");
     list.appendChild(liName);
     liName.appendChild(select);
-    for(let i=0; i < projectList.length; i++) {
+
+    for(let i=0; i < localStorage.length; i++) {
         const option = document.createElement("option");
-        option.setAttribute("value",projectList[i].title);
-        option.textContent = projectList[i].title;
+        const optionTitle = JSON.parse(localStorage.getItem(localStorage.key(i))).title;
+        option.setAttribute("value",optionTitle);
+        option.textContent = optionTitle;
         select.appendChild(option);
     }
 
