@@ -55,6 +55,7 @@ body {
     grid-area: project-container;
     padding: 20px;
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -69,6 +70,7 @@ body {
 .card h3 {
     margin: 0;
     text-align: center;
+    min-height: 46px;
 }
 
 .card ul {
@@ -79,6 +81,11 @@ body {
 .card li {
     display: flex;
     justify-content: space-between;
+}
+
+.card li:hover {
+    color: #ffd56b;
+    cursor: pointer;
 }
 
 .card p {
@@ -146,3 +153,25 @@ button:hover {
     color: #264653;
     background-color: white;
 }
+
+/*MODAL*/
+
+.modal {
+    top: 0%;
+    left: 0%;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .child {
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    background: white;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: black;
+  }

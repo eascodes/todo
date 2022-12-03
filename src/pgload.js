@@ -3,11 +3,13 @@ import { makeProject } from './project.js';
 import './style.css';
 import { clearContent } from './clear.js';
 import { showToDoForm } from './to-doform.js';
+import { buildModal } from './modal.js';
 
 
 export const loadPage = () => {
     clearContent();
     console.log(localStorage);
+    localStorage.clear();
 
     if (localStorage.length === 0) {
 
@@ -52,6 +54,9 @@ export const loadPage = () => {
             toDoDate.textContent = obj.list[i].dueDate;
             toDoLine.appendChild(toDoTitle);
             toDoLine.appendChild(toDoDate);
+            toDoLine.addEventListener("click", () => {
+                buildModal(obj.list[i]);
+            })
         }
         return card;
     }
