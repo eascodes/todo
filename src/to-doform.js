@@ -31,10 +31,14 @@ const buildToDoForm = () => {
 
     //Build project question
     const liName = document.createElement("li");
+    const selectLabel = document.createElement("label");
+    selectLabel.textContent = "Project";
+    selectLabel.setAttribute("for", "select-option");
     const select = document.createElement("select");
     select.setAttribute("name", "Project");
     select.setAttribute("id", "select-option");
     list.appendChild(liName);
+    liName.appendChild(selectLabel);
     liName.appendChild(select);
 
     for(let i=0; i < localStorage.length; i++) {
@@ -81,8 +85,8 @@ const buildRadioInput = (container, category, label1, text1, input1, value1, lab
         input.setAttribute("id", label);
         input.setAttribute("name", category);
         input.setAttribute("value", value);
-        liName.appendChild(newLabel);
         liName.appendChild(input);
+        liName.appendChild(newLabel);
     }
 
     buildRadioOption(category, label1, text1, input1, value1);
