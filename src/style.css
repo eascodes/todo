@@ -27,6 +27,7 @@ body {
 .nav {
     background-color: #264653;
     grid-area: nav;
+    min-width: 147px;
 } 
 
 .nav > ul {
@@ -36,6 +37,10 @@ body {
     gap: 5px;
     font-size: 1.3rem;
     padding-left: 15px;
+}
+
+.nav li {
+    margin-bottom: 10px;
 }
 
 .nav ul li:hover {
@@ -84,9 +89,8 @@ body {
 
 form {
     background-color: #2a9d8f;
-    padding: 20px;
+    padding: 20px 40px 20px 40px;
     width: 50%;
-    height: 60%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -98,8 +102,8 @@ form div {
 
 form ul {
     list-style: none;
-    padding-left: 20px;
     margin: 0;
+    padding-left: 0;
 }
 
 form li {

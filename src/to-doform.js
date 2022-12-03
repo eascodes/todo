@@ -12,7 +12,7 @@ const buildToDoForm = () => {
     const container = document.querySelector(".project-container");
     const form = document.createElement("form");
     const title = document.createElement("h3");
-    title.textContent = "Add a 'To Do' Item";
+    title.textContent = "Add 'To Do' Item";
     container.appendChild(form);
     form.appendChild(title);
     form.setAttribute("id", "newToDoForm");
