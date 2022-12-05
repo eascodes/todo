@@ -1,4 +1,5 @@
 import { clearContent } from "./clear";
+import { loadPage } from "./pgload";
 
 export const makeProject = (title) => {
     let list = [];
@@ -8,6 +9,11 @@ export const makeProject = (title) => {
 export const showProjectForm = () => {
     clearContent();
     buildProjectForm();
+}
+
+export const deleteProject = (project) => {
+    localStorage.removeItem(project.title);
+    loadPage();
 }
 
 const buildProjectForm = () => {

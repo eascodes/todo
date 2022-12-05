@@ -1,5 +1,5 @@
 import { makeToDo, addToDo, deleteToDo, changeStatus, changePriority } from './to-dos.js';
-import { makeProject } from './project.js';
+import { deleteProject, makeProject } from './project.js';
 import './style.css';
 import { clearContent } from './clear.js';
 import { showToDoForm } from './to-doform.js';
@@ -65,6 +65,12 @@ export const loadPage = () => {
                 buildModal(obj.list[i], obj);
             })
         }
+        const deleteProjButton = document.createElement("button");
+        deleteProjButton.innerHTML = "Delete Project";
+        card.appendChild(deleteProjButton);
+        deleteProjButton.addEventListener("click", () => {
+            deleteProject(obj);
+        })
         return card;
     }
 
