@@ -1,3 +1,4 @@
+import { removeModal } from './modal.js';
 import { loadPage } from './pgload.js';
 
 
@@ -42,11 +43,19 @@ export const addToDo = (project, toDo) => {
 }
 
 export const deleteToDo = (project, toDo) => {
-    for (let i=0; i < project.list.length; i++) {
-        if(project.list[i] === toDo) {
-            project.list.splice(i,1);
-        }
+    for (let i=0; i<localStorage.length; i++) {
+        if (project.title === JSON.parse(localStorage.getItem(localStorage.key(i))).title) {
+           let parsed = JSON.parse(localStorage.getItem(localStorage.key(i)));
+           for (let j=0; j<parsed.list.length; j++) {
+            if (parsed.list[j].title == toDo.title) {
+                parsed.list.splice(j,1);
+                localStorage.setItem(localStorage.key(i), JSON.stringify(parsed));
+            }
+           }
+        } 
     }
+   loadPage();
+   removeModal();
 }
 
 export const changeStatus = (project, toDo) => {

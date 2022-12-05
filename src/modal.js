@@ -1,3 +1,6 @@
+import { loadPage } from "./pgload"
+import { deleteToDo } from "./to-dos"
+
 export const buildModal = (obj, proj) => {
     // Create the background modal div
   const modal = document.createElement('div')
@@ -59,6 +62,10 @@ export const buildModal = (obj, proj) => {
   buttonDiv.appendChild(modalEdit);
   buttonDiv.appendChild(modalDelete);
   
+  modalDelete.addEventListener("click", () => {
+    deleteToDo(proj, obj);
+    //loadPage();
+  });
   modal.appendChild(child);
   document.body.appendChild(modal);
 
@@ -70,7 +77,7 @@ export const buildModal = (obj, proj) => {
   })
 }
 
-const removeModal = () => {
+export const removeModal = () => {
     // Find the modal and remove if it exists
     const modal = document.querySelector('.modal')
     if (modal) {
