@@ -50,8 +50,8 @@ export const loadPage = () => {
             toDoList.appendChild(toDoLine);
             const toDoTitle = document.createElement("p");
             const toDoDate = document.createElement("p");
-            toDoTitle.textContent = obj.list[i].title;
-            toDoDate.textContent = obj.list[i].dueDate;
+            toDoTitle.innerHTML = "&#9634; " + obj.list[i].title;
+            toDoDate.innerHTML = obj.list[i].dueDate  + "  &star;";
             toDoLine.appendChild(toDoTitle);
             toDoLine.appendChild(toDoDate);
             toDoLine.addEventListener("click", () => {

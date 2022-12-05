@@ -7,11 +7,19 @@ export const buildModal = (obj) => {
   child.classList.add('child')
   //create text
   const modalTitle = document.createElement("h3");
-  modalTitle.textContent = obj.title;
+  
+  console.log(obj);
+  modalTitle.innerHTML = "&#9634; " + obj.title + "  &star;";
     const modalDesc = document.createElement("p");
-    modalDesc.textContent = obj.description;
+    modalDesc.textContent = "Description: " + obj.description;
+    const modalDate = document.createElement("p");
+    modalDate.textContent = "Due Date: " + obj.dueDate;
+    const modalDelete = document.createElement("button");
+    modalDelete.textContent = "Delete Task";
     child.appendChild(modalTitle);
     child.appendChild(modalDesc);
+    child.appendChild(modalDate);
+    child.appendChild(modalDelete);
   // render the modal with child on DOM
   modal.appendChild(child);
   document.body.appendChild(modal);
