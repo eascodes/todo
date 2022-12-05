@@ -165,13 +165,45 @@ button:hover {
     background: rgba(0, 0, 0, 0.5);
   }
 
-  .child {
+.child {
     top: 50%;
     left: 50%;
-    width: 500px;
-    height: 500px;
-    background: white;
+    width: 350px;
+    height: 350px;
+    padding: 30px 30px;
+    background: #2a9d8f;
     position: absolute;
     transform: translate(-50%, -50%);
-    color: black;
-  }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.child div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    justify-items: start;
+    align-items: start;
+    column-gap: 20px;
+    row-gap: 10px;
+}
+
+.child h3 {
+    margin-top: 0;
+    align-self: center;
+}
+
+.child p,
+.child h4 {
+    margin: 0;
+}
+
+.child h4 {
+    justify-self: end;
+    font-weight: bold;
+}
+
+.star-filled {
+    color: yellow;
+}

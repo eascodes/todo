@@ -9,7 +9,7 @@ import { buildModal } from './modal.js';
 export const loadPage = () => {
     clearContent();
     console.log(localStorage);
-    localStorage.clear();
+    //localStorage.clear();
 
     if (localStorage.length === 0) {
 
@@ -50,12 +50,19 @@ export const loadPage = () => {
             toDoList.appendChild(toDoLine);
             const toDoTitle = document.createElement("p");
             const toDoDate = document.createElement("p");
-            toDoTitle.innerHTML = "&#9634; " + obj.list[i].title;
-            toDoDate.innerHTML = obj.list[i].dueDate  + "  &star;";
-            toDoLine.appendChild(toDoTitle);
-            toDoLine.appendChild(toDoDate);
+            let priorityStar = "";
+            if (obj.list[i].priority === 1) {
+                priorityStar = "&#11088;"
+            }
+            if (obj.list[i].title != undefined) {
+                toDoTitle.innerHTML = "&#9634; " + obj.list[i].title + " " + priorityStar;
+                toDoDate.innerHTML = obj.list[i].dueDate;
+                toDoLine.appendChild(toDoTitle);
+                toDoLine.appendChild(toDoDate);
+            }
+            
             toDoLine.addEventListener("click", () => {
-                buildModal(obj.list[i]);
+                buildModal(obj.list[i], obj);
             })
         }
         return card;
