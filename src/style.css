@@ -179,10 +179,10 @@ button:hover {
     justify-content: center;
 }
 
-.child div {
+.modal-div {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
     justify-items: start;
     align-items: start;
     column-gap: 20px;
@@ -206,4 +206,12 @@ button:hover {
 
 .star-filled {
     color: yellow;
+}
+
+.button-div {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 10px;
 }

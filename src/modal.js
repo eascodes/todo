@@ -8,6 +8,7 @@ export const buildModal = (obj, proj) => {
   child.classList.add('child')
   const modalTitle = document.createElement("h3");
   const modalDiv = document.createElement("div");
+  modalDiv.classList.add("modal-div");
   modalTitle.innerHTML = "&#9634; " + obj.title;
   const modalDescTitle = document.createElement("h4");
   modalDescTitle.innerHTML = "Description:";
@@ -35,8 +36,15 @@ export const buildModal = (obj, proj) => {
   modalProjectTitle.innerHTML = "Project:"
   const modalProject = document.createElement("p");
   modalProject.innerHTML = proj.title;
+
+  //Add buttons
+  const modalEdit = document.createElement("button");
+  modalEdit.textContent = "Edit Task";
   const modalDelete = document.createElement("button");
   modalDelete.textContent = "Delete Task";
+  const buttonDiv = document.createElement("div");
+  buttonDiv.classList.add("button-div");
+
   child.appendChild(modalTitle);
   child.appendChild(modalDiv);
   modalDiv.appendChild(modalDescTitle);
@@ -47,7 +55,9 @@ export const buildModal = (obj, proj) => {
   modalDiv.appendChild(modalPriority);
   modalDiv.appendChild(modalProjectTitle);
   modalDiv.appendChild(modalProject);
-  child.appendChild(modalDelete);
+  child.appendChild(buttonDiv);
+  buttonDiv.appendChild(modalEdit);
+  buttonDiv.appendChild(modalDelete);
   
   modal.appendChild(child);
   document.body.appendChild(modal);
