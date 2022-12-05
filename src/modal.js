@@ -1,22 +1,12 @@
 export const buildModal = (obj, proj) => {
-    // create the background modal div
+    // Create the background modal div
   const modal = document.createElement('div')
   modal.classList.add('modal')
-    // create the inner modal div with appended argument
+
+    // Create the inner modal div with appended argument
   const child = document.createElement('div')
   child.classList.add('child')
-  //create text
   const modalTitle = document.createElement("h3");
-  
-  function findProject() {
-    for (let i=0; i < localStorage.length; i++) {
-      if (obj.title == JSON.parse(localStorage.getItem(localStorage.key(i))).title) {
-        console.log("It worked");
-      } else { console.log(obj) }
-    } 
-  }
-  findProject();
-
   const modalDiv = document.createElement("div");
   modalTitle.innerHTML = "&#9634; " + obj.title;
   const modalDescTitle = document.createElement("h4");
@@ -33,7 +23,7 @@ export const buildModal = (obj, proj) => {
   
   let priorityLevel = "";
   let priorityStar = "";
-  if (obj.priority === 1) {
+  if (obj.priority === 1 || obj.priority === "high") {
     priorityStar = "&#11088;";
     priorityLevel = "High priority"; 
   } else {
@@ -58,11 +48,11 @@ export const buildModal = (obj, proj) => {
   modalDiv.appendChild(modalProjectTitle);
   modalDiv.appendChild(modalProject);
   child.appendChild(modalDelete);
-  // render the modal with child on DOM
+  
   modal.appendChild(child);
   document.body.appendChild(modal);
 
-  // remove modal if background clicked
+  // Remove modal if background clicked
   modal.addEventListener('click', event => {
     if (event.target.className === 'modal') {
       removeModal()
@@ -71,7 +61,7 @@ export const buildModal = (obj, proj) => {
 }
 
 const removeModal = () => {
-    // find the modal and remove if it exists
+    // Find the modal and remove if it exists
     const modal = document.querySelector('.modal')
     if (modal) {
       modal.remove()

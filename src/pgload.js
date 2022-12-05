@@ -51,7 +51,7 @@ export const loadPage = () => {
             const toDoTitle = document.createElement("p");
             const toDoDate = document.createElement("p");
             let priorityStar = "";
-            if (obj.list[i].priority === 1) {
+            if (obj.list[i].priority === 1 || obj.list[i].priority === "high") {
                 priorityStar = "&#11088;"
             }
             if (obj.list[i].title != undefined) {

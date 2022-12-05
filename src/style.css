@@ -62,7 +62,7 @@ body {
 .card {
     background-color: #2a9d8f;
     width: 250px;
-    height: 250px;
+    min-height: 250px;
     box-sizing: border-box;
     padding: 10px;
 }
