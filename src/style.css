@@ -205,6 +205,13 @@ button:hover {
     justify-content: center;
 }
 
+.modal-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+
 .modal-div {
     display: grid;
     grid-template-columns: 1fr 1fr;

@@ -9,11 +9,22 @@ export const buildModal = (obj, proj) => {
   const child = document.createElement('div')
   child.classList.add('child')
 
-  //Create title, description, & due date content
+  //Create checkbox & title
+  const modalHeader = document.createElement("div");
   const modalTitle = document.createElement("h3");
+  const modalCheckbox = document.createElement("p");
+  modalHeader.classList.add("modal-header");
+  modalCheckbox.innerHTML = "&#9634;";
+
+  
+
+  modalTitle.innerHTML = obj.title;
+  modalHeader.appendChild(modalCheckbox);
+  modalHeader.appendChild(modalTitle);
+  
+  //Create description & due date content
   const modalDiv = document.createElement("div");
   modalDiv.classList.add("modal-div");
-  modalTitle.innerHTML = "&#9634; " + obj.title;
   const modalDescTitle = document.createElement("h4");
   modalDescTitle.innerHTML = "Description:";
   const modalDesc = document.createElement("p");
@@ -54,7 +65,7 @@ export const buildModal = (obj, proj) => {
   buttonDiv.classList.add("button-div");
 
   //Append content to modal
-  child.appendChild(modalTitle);
+  child.appendChild(modalHeader);
   child.appendChild(modalDiv);
   modalDiv.appendChild(modalDescTitle);
   modalDiv.appendChild(modalDesc);

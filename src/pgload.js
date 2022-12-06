@@ -7,8 +7,8 @@ import { buildModal } from './modal.js';
 export const loadPage = () => {
     clearContent();
     console.log(localStorage);
-    //localStorage.clear();
 
+    //Set default projects
     if (localStorage.length === 0) {
 
         let backpackTrip = {
@@ -31,19 +31,22 @@ export const loadPage = () => {
         localStorage.setItem("loveDog", JSON.stringify(loveDog));
     }
 
-    //BUILD THE CARDS//
+    //Build the project cards
     function makeCard(obj) {
+        //Create card & project title
         const card = document.createElement("div");
         card.classList.add("card");
         const projectTitle = document.createElement("h3");
         projectTitle.textContent = obj.title;
         card.appendChild(projectTitle);
 
+        //Create container for to do task list
         const listContainer = document.createElement("div");
         card.appendChild(listContainer);
         const toDoList = document.createElement("ul");
         listContainer.appendChild(toDoList);        
 
+        //Create to do task checkbox, title, & due date elements
         for(let i=0; i<obj.list.length; i++) {
             const toDoLine = document.createElement("li");
             toDoList.appendChild(toDoLine);
@@ -54,12 +57,14 @@ export const loadPage = () => {
             const toDoTitle = document.createElement("p");
             const toDoDate = document.createElement("p");
 
+            //Display correct completion status
             if (obj.list[i].status === 1) {
                 markComplete(checkbox, toDoTitle, toDoDate, obj, obj.list[i]);
             } else if (obj.list[i].status === 0) {
                 checkbox.innerHTML = "&#9744;";
             }
 
+            //Display correct priority status
             let priorityStar = "";
             if (obj.list[i].priority === 1 || obj.list[i].priority === "high") {
                 priorityStar = "&#11088;"
@@ -72,7 +77,7 @@ export const loadPage = () => {
                 toDoLine.appendChild(toDoDate);
             }
 
-            //Mark task complete when checkbox is checked
+            //Mark to do task complete when checkbox is checked
             checkbox.addEventListener("click", () => {
                 if (obj.list[i].status === 0) {
                     markComplete(checkbox, toDoTitle, toDoDate, obj, obj.list[i]);
@@ -144,6 +149,7 @@ export const loadPage = () => {
        loadPage();
     }
 
+    //Create project cards & add to project container
     (function createCardDisplay() {
         for (let i=0; i < localStorage.length; i++) {
             const newCard = makeCard(JSON.parse(localStorage.getItem(localStorage.key(i))));
