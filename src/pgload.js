@@ -99,10 +99,10 @@ function makeCard(obj) {
         //Mark to do task complete when checkbox is checked
         checkbox.addEventListener("click", () => {
             if (obj.list[i].status === 0) {
-                markComplete(checkbox, toDoTitle, toDoDate, obj, obj.list[i]);
+                markComplete(checkbox, toDoTitle, toDoDate);
                 updateStatus(obj, obj.list[i]);
             } else if (obj.list[i].status === 1) {
-                markIncomplete(checkbox, toDoTitle, toDoDate, obj, obj.list[i]);
+                markIncomplete(checkbox, toDoTitle, toDoDate);
                 updateStatus(obj, obj.list[i]);
             }
         })
@@ -125,14 +125,14 @@ function makeCard(obj) {
 
 
 //Mark task as complete
-function markComplete(checkbox, toDoTitle, toDoDate, project, toDo) {
+function markComplete(checkbox, toDoTitle, toDoDate) {
     checkbox.innerHTML = "&#9745;";
     toDoTitle.classList.add("strikethrough");
     toDoDate.classList.add("strikethrough");
 }
 
 //Mark task as incomplete
-function markIncomplete(checkbox, toDoTitle, toDoDate, project, toDo) {
+function markIncomplete(checkbox, toDoTitle, toDoDate) {
     checkbox.innerHTML = "&#9744;";
     toDoTitle.classList.remove("strikethrough");
     toDoDate.classList.remove("strikethrough");
