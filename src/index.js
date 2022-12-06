@@ -1,10 +1,7 @@
-import { makeToDo, addToDo, deleteToDo, changeStatus, changePriority } from './to-dos.js';
-import { makeProject } from './project.js';
 import './style.css';
 import { showToDoForm } from './to-doform.js';
 import { loadPage } from './pgload.js';
 import { showProjectForm } from './project.js';
-import { buildModal } from './modal.js';
 
 loadPage();
 

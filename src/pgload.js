@@ -1,8 +1,6 @@
-import { makeToDo, addToDo, deleteToDo, changeStatus, changePriority } from './to-dos.js';
-import { deleteProject, makeProject } from './project.js';
+import { deleteProject } from './project.js';
 import './style.css';
 import { clearContent } from './clear.js';
-import { showToDoForm } from './to-doform.js';
 import { buildModal } from './modal.js';
 
 

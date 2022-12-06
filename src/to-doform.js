@@ -1,6 +1,5 @@
 import { clearContent } from "./clear";
 import { saveToDo } from "./to-dos";
-import { loadPage } from "./pgload";
 
 export const showToDoForm = () => {
     clearContent();

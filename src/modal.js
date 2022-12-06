@@ -1,4 +1,3 @@
-import { loadPage } from "./pgload"
 import { deleteToDo } from "./to-dos"
 
 export const buildModal = (obj, proj) => {
