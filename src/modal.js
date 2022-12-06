@@ -2,13 +2,15 @@ import { loadPage } from "./pgload"
 import { deleteToDo } from "./to-dos"
 
 export const buildModal = (obj, proj) => {
-    // Create the background modal div
+  //Create the background modal div
   const modal = document.createElement('div')
   modal.classList.add('modal')
 
-    // Create the inner modal div with appended argument
+  //Create the inner modal div
   const child = document.createElement('div')
   child.classList.add('child')
+
+  //Create title, description, & due date content
   const modalTitle = document.createElement("h3");
   const modalDiv = document.createElement("div");
   modalDiv.classList.add("modal-div");
@@ -21,6 +23,8 @@ export const buildModal = (obj, proj) => {
   modalDateTitle.innerHTML = "Due Date:"
   const modalDate = document.createElement("p");
   modalDate.textContent = obj.dueDate;
+
+  //Set correct priority status content
   const modalPriorityTitle = document.createElement("h4");
   modalPriorityTitle.innerHTML = "Priority:"
   const modalPriority = document.createElement("p");
@@ -37,10 +41,12 @@ export const buildModal = (obj, proj) => {
   modalPriority.innerHTML = priorityLevel + " " + priorityStar;
   const modalProjectTitle = document.createElement("h4");
   modalProjectTitle.innerHTML = "Project:"
+  
+  //Set correct project content
   const modalProject = document.createElement("p");
   modalProject.innerHTML = proj.title;
 
-  //Add buttons
+  //Add edit & delete buttons
   const modalEdit = document.createElement("button");
   modalEdit.textContent = "Edit Task";
   const modalDelete = document.createElement("button");
@@ -48,6 +54,7 @@ export const buildModal = (obj, proj) => {
   const buttonDiv = document.createElement("div");
   buttonDiv.classList.add("button-div");
 
+  //Append content to modal
   child.appendChild(modalTitle);
   child.appendChild(modalDiv);
   modalDiv.appendChild(modalDescTitle);
@@ -61,13 +68,13 @@ export const buildModal = (obj, proj) => {
   child.appendChild(buttonDiv);
   buttonDiv.appendChild(modalEdit);
   buttonDiv.appendChild(modalDelete);
-  
-  modalDelete.addEventListener("click", () => {
-    deleteToDo(proj, obj);
-    //loadPage();
-  });
   modal.appendChild(child);
   document.body.appendChild(modal);
+  
+  //Delete to do task if delete button clicked
+  modalDelete.addEventListener("click", () => {
+    deleteToDo(proj, obj);
+  });
 
   // Remove modal if background clicked
   modal.addEventListener('click', event => {
@@ -77,8 +84,8 @@ export const buildModal = (obj, proj) => {
   })
 }
 
+//Find the modal and remove if it exists
 export const removeModal = () => {
-    // Find the modal and remove if it exists
     const modal = document.querySelector('.modal')
     if (modal) {
       modal.remove()
