@@ -82,10 +82,22 @@ body {
 .card li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-.card li:hover {
+.card li > div > p + p:hover {
     color: #ffd56b;
+    cursor: pointer;
+}
+
+.card > div > ul > li > div {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+
+.card li > div > p:hover {
     cursor: pointer;
 }
 
@@ -96,6 +108,14 @@ body {
 .card button {
     margin-bottom: 10px;
     margin-top: auto;
+}
+
+.checkbox {
+    font-size: 2rem;
+}
+
+.strikethrough {
+    text-decoration: line-through;
 }
 
 /*FORMS*/

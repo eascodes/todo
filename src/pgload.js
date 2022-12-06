@@ -44,27 +44,54 @@ export const loadPage = () => {
         const listContainer = document.createElement("div");
         card.appendChild(listContainer);
         const toDoList = document.createElement("ul");
-        listContainer.appendChild(toDoList);
+        listContainer.appendChild(toDoList);        
+
         for(let i=0; i<obj.list.length; i++) {
             const toDoLine = document.createElement("li");
             toDoList.appendChild(toDoLine);
+            const leftDiv = document.createElement("div");
+            toDoLine.appendChild(leftDiv);
+            const checkbox = document.createElement("p");
+            checkbox.classList.add("checkbox");
             const toDoTitle = document.createElement("p");
             const toDoDate = document.createElement("p");
+
+            if (obj.list[i].status === 1) {
+                markComplete(checkbox, toDoTitle, toDoDate, obj, obj.list[i]);
+            } else if (obj.list[i].status === 0) {
+                checkbox.innerHTML = "&#9744;";
+            }
+
             let priorityStar = "";
             if (obj.list[i].priority === 1 || obj.list[i].priority === "high") {
                 priorityStar = "&#11088;"
             }
             if (obj.list[i].title != undefined) {
-                toDoTitle.innerHTML = "&#9634; " + obj.list[i].title + " " + priorityStar;
+                toDoTitle.innerHTML = obj.list[i].title + " " + priorityStar;
                 toDoDate.innerHTML = obj.list[i].dueDate;
-                toDoLine.appendChild(toDoTitle);
+                leftDiv.appendChild(checkbox);
+                leftDiv.appendChild(toDoTitle);
                 toDoLine.appendChild(toDoDate);
             }
-            
-            toDoLine.addEventListener("click", () => {
+
+            //Mark task complete when checkbox is checked
+            checkbox.addEventListener("click", () => {
+                if (obj.list[i].status === 0) {
+                    markComplete(checkbox, toDoTitle, toDoDate, obj, obj.list[i]);
+                    updateStatus(obj, obj.list[i]);
+                } else if (obj.list[i].status === 1) {
+                    markIncomplete(checkbox, toDoTitle, toDoDate, obj, obj.list[i]);
+                    updateStatus(obj, obj.list[i]);
+                }
+            })
+
+            //Build modal when user clicks on task title
+            toDoTitle.addEventListener("click", () => {
                 buildModal(obj.list[i], obj);
             })
         }
+
+        //Append delete project button
         const deleteProjButton = document.createElement("button");
         deleteProjButton.innerHTML = "Delete Project";
         card.appendChild(deleteProjButton);
@@ -74,9 +101,49 @@ export const loadPage = () => {
         return card;
     }
 
+    //Add card to project container
     function addCard(card) {
         const div = document.querySelector(".project-container");
         div.appendChild(card);
+    }
+
+    //Mark task as complete
+    function markComplete(checkbox, toDoTitle, toDoDate, project, toDo) {
+        checkbox.innerHTML = "&#9745;";
+        toDoTitle.classList.add("strikethrough");
+        toDoDate.classList.add("strikethrough");
+    }
+
+    //Mark task as incomplete
+    function markIncomplete(checkbox, toDoTitle, toDoDate, project, toDo) {
+        checkbox.innerHTML = "&#9744;";
+        toDoTitle.classList.remove("strikethrough");
+        toDoDate.classList.remove("strikethrough");
+    }
+
+    //Update task status in local storage
+    function updateStatus(project, toDo) {
+        for (let i=0; i<localStorage.length; i++) {
+            //Find project in local storage
+            if (project.title === JSON.parse(localStorage.getItem(localStorage.key(i))).title) {
+               //Set project as an object
+                let parsed = JSON.parse(localStorage.getItem(localStorage.key(i)));
+                //Find to do task within project
+                for (let j=0; j<parsed.list.length; j++) {
+                    if (parsed.list[j].title == toDo.title) {
+                        //Update status of to do task in parsed variable
+                        if (parsed.list[j].status === 0) {
+                            parsed.list[j].status = 1;
+                        } else if (parsed.list[j].status === 1) {
+                            parsed.list[j].status = 0;
+                        }
+                        //Update local storage to match updated parsed variable
+                        localStorage.setItem(localStorage.key(i), JSON.stringify(parsed));
+                    }
+                   }
+            } 
+        }
+       loadPage();
     }
 
     (function createCardDisplay() {
