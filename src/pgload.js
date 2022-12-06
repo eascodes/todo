@@ -76,12 +76,8 @@ function makeCard(obj) {
         const toDoTitle = document.createElement("p");
         const toDoDate = document.createElement("p");
 
-        //Display correct completion status
-        if (obj.list[i].status === 1) {
-            markComplete(checkbox, toDoTitle, toDoDate, obj, obj.list[i]);
-        } else if (obj.list[i].status === 0) {
-            checkbox.innerHTML = "&#9744;";
-        }
+        //Display the correct completion status
+        displayStatus(checkbox, obj.list[i].status, toDoTitle, toDoDate);
 
         //Display correct priority status
         let priorityStar = "";
@@ -97,15 +93,7 @@ function makeCard(obj) {
         }
 
         //Mark to do task complete when checkbox is checked
-        checkbox.addEventListener("click", () => {
-            if (obj.list[i].status === 0) {
-                markComplete(checkbox, toDoTitle, toDoDate);
-                updateStatus(obj, obj.list[i]);
-            } else if (obj.list[i].status === 1) {
-                markIncomplete(checkbox, toDoTitle, toDoDate);
-                updateStatus(obj, obj.list[i]);
-            }
-        })
+        addStatusListener(obj.list[i].status, checkbox, toDoTitle, toDoDate, obj, obj.list[i]);
 
         //Build modal when user clicks on task title
         toDoTitle.addEventListener("click", () => {
@@ -123,6 +111,14 @@ function makeCard(obj) {
     return card;
 }
 
+//Display correct completion status
+function displayStatus(checkbox, status, toDoTitle, toDoDate) {
+    if (status === 1) {
+        markComplete(checkbox, toDoTitle, toDoDate);
+    } else if (status === 0) {
+        checkbox.innerHTML = "&#9744;";
+    }
+}
 
 //Mark task as complete
 function markComplete(checkbox, toDoTitle, toDoDate) {
@@ -136,6 +132,18 @@ function markIncomplete(checkbox, toDoTitle, toDoDate) {
     checkbox.innerHTML = "&#9744;";
     toDoTitle.classList.remove("strikethrough");
     toDoDate.classList.remove("strikethrough");
+}
+
+function addStatusListener(status, checkbox, toDoTitle, toDoDate, proj, toDo) {
+    checkbox.addEventListener("click", () => {
+        if (status === 0) {
+            markComplete(checkbox, toDoTitle, toDoDate);
+            updateStatus(proj, toDo);
+        } else if (status === 1) {
+            markIncomplete(checkbox, toDoTitle, toDoDate);
+            updateStatus(proj, toDo);
+        }
+    })
 }
 
 //Update task status in local storage
