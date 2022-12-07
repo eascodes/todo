@@ -1,5 +1,5 @@
 import { addStatusListener, displayStatus } from "./pgload"
-import { deleteToDo } from "./to-dos"
+import { deleteToDo, editToDo } from "./to-dos"
 
 export const buildModal = (obj, proj) => {
   //Create the background modal div
@@ -84,6 +84,9 @@ export const buildModal = (obj, proj) => {
   buttonDiv.appendChild(modalDelete);
   modal.appendChild(child);
   document.body.appendChild(modal);
+
+  //Add event listener to edit to do task details
+  modalEdit.addEventListener("click", editToDo);
   
   //Delete to do task if delete button clicked
   modalDelete.addEventListener("click", () => {

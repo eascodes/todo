@@ -81,3 +81,73 @@ export const changePriority = (project, toDo) => {
         }
     }
 }
+
+export const editToDo = () => {
+    const modalDiv = document.querySelector(".modal-div");
+    const inputList = Array.from(document.querySelectorAll(".modal-div p"));
+    
+    //Add input field to description section
+    const desc = inputList[0];
+    const descContent = desc.textContent;
+    desc.innerHTML = "";
+    const descInput = document.createElement("input");
+    descInput.setAttribute("value", descContent);
+    desc.appendChild(descInput);
+
+    //Add input field to due date section
+    const date = inputList[1];
+    const dateContent = date.textContent;
+    date.innerHTML = "";
+    const dateInput = document.createElement("input");
+    dateInput.setAttribute("type", "date");
+    dateInput.setAttribute("value", dateContent);
+    date.appendChild(dateInput);
+
+    //Add input field to priority section
+    const priority = inputList[2];
+    const priorityContent = priority.textContent;
+    priority.innerHTML = "";
+    const priorityInput = document.createElement("select");
+    priorityInput.setAttribute("name", "priority");
+    priorityInput.setAttribute("id", "select-option");
+    //Create high priority option
+    const high = document.createElement("option");
+    high.innerHTML = "High priority &#11088;";
+    high.setAttribute("value", "high");
+    priority.appendChild(priorityInput);
+    priorityInput.appendChild(high);
+    //Create low priority option
+    const low = document.createElement("option");
+    low.innerHTML = "Low priority &#9734;";
+    low.setAttribute("value", "low");
+    priority.appendChild(priorityInput);
+    priorityInput.appendChild(low);
+    //Set the correct priority default option
+    if (priorityContent === high.innerHTML) {
+        high.setAttribute("selected","selected");
+
+    } else if (priorityContent === low.innerHTML) {
+        low.setAttribute("selected","selected");
+    } 
+
+    //Add input field to project section
+    const project = inputList[3];
+    const projectContent = project.textContent;
+    project.innerHTML = "";
+    const projectInput = document.createElement("select");
+    projectInput.setAttribute("name", "priority");
+    projectInput.setAttribute("id", "select-option");
+    project.appendChild(projectInput);
+    //
+    for(let i=0; i < localStorage.length; i++) {
+        const option = document.createElement("option");
+        const optionTitle = JSON.parse(localStorage.getItem(localStorage.key(i))).title;
+        option.setAttribute("value",optionTitle);
+        option.textContent = optionTitle;
+        projectInput.appendChild(option);
+        if (projectContent === option.textContent) {
+            option.setAttribute("selected", "selected");
+        }
+    }
+
+}
