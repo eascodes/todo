@@ -3,6 +3,7 @@ import './style.css';
 import { clearContent } from './clear.js';
 import { buildModal } from './modal.js';
 import { reloadModal } from './modal.js';
+import { format } from 'date-fns';
 
 
 export const loadPage = () => {
@@ -10,19 +11,19 @@ export const loadPage = () => {
 
     //Set default projects
     if (localStorage.length === 0) {
-
+        //const date = format(new Date(2023, 4, 2), 'yyyy-MM-dd');
         let backpackTrip = {
             list: [
-                {title: 'Plan route', description: 'Use guidebook to plan hiking route', dueDate: '4/1/23', priority: 1, status: 0},
-                {title: 'Plan meals', description: 'Plan meals to meet calorie needs', dueDate: '4/7/23', priority: 0, status: 0},
-                {title: 'Pack gear', description: 'Pack gear needed for 10 day trip', dueDate: '4/14/23', priority: 1, status: 0}
+                {title: 'Plan route', description: 'Use guidebook to plan hiking route', dueDate: format(new Date("04/05/2023"), 'MM-dd-yy'), priority: 1, status: 0},
+                {title: 'Plan meals', description: 'Plan meals to meet calorie needs', dueDate: format(new Date("05/01/2023"), 'MM-dd-yy'), priority: 0, status: 0},
+                {title: 'Pack gear', description: 'Pack gear needed for 10 day trip', dueDate: format(new Date("05/15/2023"), 'MM-dd-yy'), status: 0}
             ],
             title: "Prep for Backpacking Trip"
         }
 
         let loveDog = {
             list: [
-                {title: 'Cuddle', description: 'Cuddle with my dog', dueDate: '12/20/22', priority: 1, status: 0}
+                {title: 'Cuddle', description: 'Cuddle with my dog', dueDate: format(new Date("12/25/2022"), 'MM-dd-yy'), priority: 1, status: 0}
             ],
             title: "Love my dog"
         }

@@ -1,6 +1,6 @@
 import { removeModal } from './modal.js';
 import { loadPage } from './pgload.js';
-
+import { format, parseISO } from 'date-fns';
 
 
 export const saveToDo = (e) => {
@@ -8,7 +8,8 @@ export const saveToDo = (e) => {
     e.preventDefault();
     const title = document.querySelector("#newTitle").value;
     const desc = document.querySelector("#desc").value;
-    const date = document.querySelector("#date").value;
+    let date = document.querySelector("#date").value;
+    date = format(parseISO(date), 'MM-dd-yy');
     let priority = "";
     let priorityResult = document.getElementsByName("priority");
     for(let i = 0; i < priorityResult.length; i++) {

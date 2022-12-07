@@ -39,7 +39,7 @@ const buildToDoForm = () => {
     list.appendChild(liName);
     liName.appendChild(selectLabel);
     liName.appendChild(select);
-
+    //Loop through local storage to populate project titles
     for(let i=0; i < localStorage.length; i++) {
         const option = document.createElement("option");
         const optionTitle = JSON.parse(localStorage.getItem(localStorage.key(i))).title;
