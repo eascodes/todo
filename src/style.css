@@ -97,10 +97,6 @@ body {
     align-items: center;
 }
 
-.card li > div > p:hover {
-    cursor: pointer;
-}
-
 .card p {
     margin: 0;
 }
@@ -112,6 +108,11 @@ body {
 
 .checkbox {
     font-size: 2rem;
+}
+
+.checkbox:hover {
+    cursor: pointer;
+    color: #ffd56b;
 }
 
 .strikethrough {
@@ -210,6 +211,11 @@ button:hover {
     flex-direction: row;
     justify-content: center;
     gap: 10px;
+    margin-bottom: 15px;
+}
+
+.modal-header h3 {
+    margin-bottom: 0;
 }
 
 .modal-div {
