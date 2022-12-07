@@ -112,7 +112,7 @@ function makeCard(obj) {
 }
 
 //Display correct completion status
-function displayStatus(checkbox, status, toDoTitle, toDoDate) {
+const displayStatus = (checkbox, status, toDoTitle, toDoDate) => {
     if (status === 1) {
         markComplete(checkbox, toDoTitle, toDoDate);
     } else if (status === 0) {
@@ -121,20 +121,20 @@ function displayStatus(checkbox, status, toDoTitle, toDoDate) {
 }
 
 //Mark task as complete
-function markComplete(checkbox, toDoTitle, toDoDate) {
+const markComplete = (checkbox, toDoTitle, toDoDate) => {
     checkbox.innerHTML = "&#9745;";
     toDoTitle.classList.add("strikethrough");
     toDoDate.classList.add("strikethrough");
 }
 
 //Mark task as incomplete
-function markIncomplete(checkbox, toDoTitle, toDoDate) {
+const markIncomplete = (checkbox, toDoTitle, toDoDate) => {
     checkbox.innerHTML = "&#9744;";
     toDoTitle.classList.remove("strikethrough");
     toDoDate.classList.remove("strikethrough");
 }
 
-function addStatusListener(status, checkbox, toDoTitle, toDoDate, proj, toDo) {
+const addStatusListener = (status, checkbox, toDoTitle, toDoDate, proj, toDo) => {
     checkbox.addEventListener("click", () => {
         if (status === 0) {
             markComplete(checkbox, toDoTitle, toDoDate);
@@ -147,7 +147,7 @@ function addStatusListener(status, checkbox, toDoTitle, toDoDate, proj, toDo) {
 }
 
 //Update task status in local storage
-function updateStatus(project, toDo) {
+const updateStatus = (project, toDo) => {
     for (let i=0; i<localStorage.length; i++) {
         //Find project in local storage
         if (project.title === JSON.parse(localStorage.getItem(localStorage.key(i))).title) {
