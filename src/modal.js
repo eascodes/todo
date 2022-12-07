@@ -31,12 +31,12 @@ export const buildModal = (obj, proj) => {
   modalDateTitle.innerHTML = "Due Date:"
   modalDate.innerHTML = obj.dueDate;
 
-  //PICK UP HERE
-  addStatusListener(obj, modalCheckbox, modalTitle, modalDate, proj);
-  displayStatus(modalCheckbox, obj, modalTitle, modalDate);
-
   modalHeader.appendChild(modalCheckbox);
-  modalHeader.appendChild(modalTitle);  
+  modalHeader.appendChild(modalTitle); 
+
+  //Add event listener for changing to do task status by clicking checkbox
+  addStatusListener(obj, modalCheckbox, modalTitle, modalDate, proj);
+  displayStatus(modalCheckbox, obj, modalTitle, modalDate); 
 
   //Set correct priority status content
   const modalPriorityTitle = document.createElement("h4");
@@ -108,8 +108,18 @@ export const removeModal = () => {
 
 export const reloadModal = (obj, proj) => {
     const modal = document.querySelector('.modal')
+    removeModal();
     if (modal) {
-      removeModal();
-      buildModal(obj, proj);
+      //Find appropriate project in local storage & rebuild modal
+      for (let i=0; i<localStorage.length; i++) {
+        if (proj.title === JSON.parse(localStorage.getItem(localStorage.key(i))).title) {
+          let parsed = JSON.parse(localStorage.getItem(localStorage.key(i)));
+          for (let j=0; j<parsed.list.length; j++) {
+            if (parsed.list[j].title == obj.title) {
+              buildModal(parsed.list[j], parsed);
+            }
+          }
+        }
+      }
     }
 }

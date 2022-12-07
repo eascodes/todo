@@ -2,11 +2,12 @@ import { deleteProject } from './project.js';
 import './style.css';
 import { clearContent } from './clear.js';
 import { buildModal } from './modal.js';
+import { reloadModal } from './modal.js';
 
 
 export const loadPage = () => {
     clearContent();
-    console.log(localStorage);
+    //console.log(localStorage);
 
     //Set default projects
     if (localStorage.length === 0) {
@@ -136,6 +137,8 @@ const markIncomplete = (checkbox, toDoTitle, toDoDate) => {
 
 export const addStatusListener = (toDo, checkbox, toDoTitle, toDoDate, proj) => {
     checkbox.addEventListener("click", () => {
+        console.log(toDo.status);
+        console.log(localStorage);
         if (toDo.status === 0) {
             markComplete(checkbox, toDoTitle, toDoDate);
             updateStatus(proj, toDo);
@@ -169,4 +172,5 @@ const updateStatus = (project, toDo) => {
         } 
     }
    loadPage();
+   reloadModal(toDo, project);
 }
