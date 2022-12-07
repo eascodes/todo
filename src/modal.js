@@ -1,3 +1,4 @@
+import { addStatusListener, displayStatus } from "./pgload"
 import { deleteToDo } from "./to-dos"
 
 export const buildModal = (obj, proj) => {
@@ -9,30 +10,33 @@ export const buildModal = (obj, proj) => {
   const child = document.createElement('div')
   child.classList.add('child')
 
-  //Create checkbox & title
+  //Create content
   const modalHeader = document.createElement("div");
   const modalTitle = document.createElement("h3");
   const modalCheckbox = document.createElement("p");
-  modalHeader.classList.add("modal-header");
-  modalCheckbox.innerHTML = "&#9634;";
-
-  
-
-  modalTitle.innerHTML = obj.title;
-  modalHeader.appendChild(modalCheckbox);
-  modalHeader.appendChild(modalTitle);
-  
-  //Create description & due date content
   const modalDiv = document.createElement("div");
-  modalDiv.classList.add("modal-div");
   const modalDescTitle = document.createElement("h4");
-  modalDescTitle.innerHTML = "Description:";
   const modalDesc = document.createElement("p");
-  modalDesc.textContent = obj.description;
   const modalDateTitle = document.createElement("h4");
-  modalDateTitle.innerHTML = "Due Date:"
   const modalDate = document.createElement("p");
-  modalDate.textContent = obj.dueDate;
+
+  modalHeader.classList.add("modal-header");
+  modalDiv.classList.add("modal-div");
+  modalCheckbox.classList.add("checkbox");
+
+  modalCheckbox.innerHTML = "&#9634;";
+  modalTitle.innerHTML = obj.title;
+  modalDescTitle.innerHTML = "Description:";
+  modalDesc.innerHTML = obj.description;
+  modalDateTitle.innerHTML = "Due Date:"
+  modalDate.innerHTML = obj.dueDate;
+
+  //PICK UP HERE
+  addStatusListener(obj, modalCheckbox, modalTitle, modalDate, proj);
+  displayStatus(modalCheckbox, obj, modalTitle, modalDate);
+
+  modalHeader.appendChild(modalCheckbox);
+  modalHeader.appendChild(modalTitle);  
 
   //Set correct priority status content
   const modalPriorityTitle = document.createElement("h4");
@@ -101,3 +105,11 @@ export const removeModal = () => {
       modal.remove()
     }
   }
+
+export const reloadModal = (obj, proj) => {
+    const modal = document.querySelector('.modal')
+    if (modal) {
+      removeModal();
+      buildModal(obj, proj);
+    }
+}

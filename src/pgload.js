@@ -77,7 +77,7 @@ function makeCard(obj) {
         const toDoDate = document.createElement("p");
 
         //Display the correct completion status
-        displayStatus(checkbox, obj.list[i].status, toDoTitle, toDoDate);
+        displayStatus(checkbox, obj.list[i], toDoTitle, toDoDate);
 
         //Display correct priority status
         let priorityStar = "";
@@ -112,10 +112,10 @@ function makeCard(obj) {
 }
 
 //Display correct completion status
-const displayStatus = (checkbox, status, toDoTitle, toDoDate) => {
-    if (status === 1) {
+export const displayStatus = (checkbox, toDo, toDoTitle, toDoDate) => {
+    if (toDo.status === 1) {
         markComplete(checkbox, toDoTitle, toDoDate);
-    } else if (status === 0) {
+    } else if (toDo.status === 0) {
         checkbox.innerHTML = "&#9744;";
     }
 }
@@ -134,7 +134,7 @@ const markIncomplete = (checkbox, toDoTitle, toDoDate) => {
     toDoDate.classList.remove("strikethrough");
 }
 
-const addStatusListener = (status, checkbox, toDoTitle, toDoDate, proj, toDo) => {
+export const addStatusListener = (status, checkbox, toDoTitle, toDoDate, proj, toDo) => {
     checkbox.addEventListener("click", () => {
         if (status === 0) {
             markComplete(checkbox, toDoTitle, toDoDate);
