@@ -93,7 +93,7 @@ function makeCard(obj) {
         }
 
         //Mark to do task complete when checkbox is checked
-        addStatusListener(obj.list[i].status, checkbox, toDoTitle, toDoDate, obj, obj.list[i]);
+        addStatusListener(obj.list[i], checkbox, toDoTitle, toDoDate, obj);
 
         //Build modal when user clicks on task title
         toDoTitle.addEventListener("click", () => {
@@ -134,12 +134,12 @@ const markIncomplete = (checkbox, toDoTitle, toDoDate) => {
     toDoDate.classList.remove("strikethrough");
 }
 
-export const addStatusListener = (status, checkbox, toDoTitle, toDoDate, proj, toDo) => {
+export const addStatusListener = (toDo, checkbox, toDoTitle, toDoDate, proj) => {
     checkbox.addEventListener("click", () => {
-        if (status === 0) {
+        if (toDo.status === 0) {
             markComplete(checkbox, toDoTitle, toDoDate);
             updateStatus(proj, toDo);
-        } else if (status === 1) {
+        } else if (toDo.status === 1) {
             markIncomplete(checkbox, toDoTitle, toDoDate);
             updateStatus(proj, toDo);
         }
