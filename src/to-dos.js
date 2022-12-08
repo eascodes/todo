@@ -83,7 +83,16 @@ export const changePriority = (project, toDo) => {
     }
 }
 
-export const editToDo = () => {
+export const editToDo = (e) => {
+    const buttonDiv = document.querySelector(".button-div");
+    const editButton = document.querySelector(".button-div > button");
+    const deleteButton = document.querySelector(".button-div > button + button");
+    buttonDiv.removeChild(editButton);
+    buttonDiv.removeChild(deleteButton);
+    const saveButton = document.createElement("button");
+    saveButton.textContent = "Save Task";
+    buttonDiv.appendChild(saveButton);
+    buttonDiv.appendChild(deleteButton);
     const modalDiv = document.querySelector(".modal-div");
     const inputList = Array.from(document.querySelectorAll(".modal-div p"));
     
@@ -97,7 +106,8 @@ export const editToDo = () => {
 
     //Add input field to due date section
     const date = inputList[1];
-    const dateContent = date.textContent;
+    let dateContent = new Date(date.textContent);
+    dateContent = format((dateContent), 'yyyy-MM-dd')
     date.innerHTML = "";
     const dateInput = document.createElement("input");
     dateInput.setAttribute("type", "date");
@@ -110,7 +120,7 @@ export const editToDo = () => {
     priority.innerHTML = "";
     const priorityInput = document.createElement("select");
     priorityInput.setAttribute("name", "priority");
-    priorityInput.setAttribute("id", "select-option");
+    priorityInput.setAttribute("id", "priority-select");
     //Create high priority option
     const high = document.createElement("option");
     high.innerHTML = "High priority &#11088;";
@@ -136,8 +146,8 @@ export const editToDo = () => {
     const projectContent = project.textContent;
     project.innerHTML = "";
     const projectInput = document.createElement("select");
-    projectInput.setAttribute("name", "priority");
-    projectInput.setAttribute("id", "select-option");
+    projectInput.setAttribute("name", "project");
+    projectInput.setAttribute("id", "project-select");
     project.appendChild(projectInput);
     //
     for(let i=0; i < localStorage.length; i++) {
@@ -151,4 +161,47 @@ export const editToDo = () => {
         }
     }
 
+    saveButton.addEventListener("click", () => {
+        saveUpdate(e, descInput, dateInput);
+    })
+
+}
+
+const saveUpdate = (e, descInput, dateInput) => {
+    let title = (document.querySelector(".modal-header h3")).textContent;
+    const desc = descInput.value;
+    let date = format(parseISO(dateInput.value), 'MM-dd-yy');
+    let priority = document.querySelector("#priority-select").value;
+    let project = document.querySelector("#project-select").value;
+    for (let i=0; i<localStorage.length; i++) {
+        if (project == JSON.parse(localStorage.getItem(localStorage.key(i))).title) {
+            project = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        }
+    }
+    e.target.removeEventListener("click", () => {
+        saveUpdate(e, descInput, dateInput);   
+    });
+    let updatedToDo = makeToDo(title, desc, date, priority, project);
+    updateLocalStorage(project, updatedToDo);
+}
+
+const updateLocalStorage = (project, updatedToDo) => {
+    for (let i=0; i<localStorage.length; i++) {
+        //Loop through local storage to find correct project
+        if (project.title === JSON.parse(localStorage.getItem(localStorage.key(i))).title) {
+           //Set project from local storage as an object variable
+            let parsed = JSON.parse(localStorage.getItem(localStorage.key(i)));
+           //Loop through to do tasks to find correct task
+            for (let j=0; j<parsed.list.length; j++) {
+                if(parsed.list[j].title === updatedToDo.title) {
+                    //Set original to do task as updated to do task object
+                    parsed.list[j] = updatedToDo;
+            }
+           }
+           //Set original project in local storage as project object with updated task
+           localStorage.setItem(localStorage.key(i), JSON.stringify(parsed));
+        } 
+    }
+    removeModal();
+    loadPage();
 }

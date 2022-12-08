@@ -8,6 +8,7 @@ import { format } from 'date-fns';
 
 export const loadPage = () => {
     clearContent();
+    //localStorage.clear();
 
     //Set default projects
     if (localStorage.length === 0) {
