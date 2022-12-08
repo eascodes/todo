@@ -23,15 +23,15 @@ const buildToDoForm = () => {
     div.appendChild(list);
 
     //Build questions
-    buildTextInput(list, "firstItem", "newTitle", "To Do Item Title", "input1", "text");
-    buildTextInput(list, "secItem", "desc", "Description", "input2", "text");
-    buildTextInput(list, "thirdItem", "date", "Due Date", "input3", "date");
+    buildTextInput(list, "firstItem", "newTitle", "To Do Item Title*", "input1", "text");
+    buildTextInput(list, "secItem", "desc", "Description*", "input2", "text");
+    buildTextInput(list, "thirdItem", "date", "Due Date*", "input3", "date");
     buildRadioInput(list, "priority", "high-priority", "High Priority", "input4", "high", "low-priority", "Low Priority", "input5", "low");
 
     //Build project question
     const liName = document.createElement("li");
     const selectLabel = document.createElement("label");
-    selectLabel.textContent = "Project";
+    selectLabel.textContent = "Project*";
     selectLabel.setAttribute("for", "select-option");
     const select = document.createElement("select");
     select.setAttribute("name", "Project");
@@ -66,6 +66,7 @@ const buildTextInput = (container, liName, labelName, textContent, inputName, in
     inputName.setAttribute("type", inputType);
     inputName.setAttribute("id", labelName);
     inputName.setAttribute("name", labelName);
+    inputName.setAttribute("required", "required");
     container.appendChild(liName);
     liName.appendChild(newLabel);
     liName.appendChild(inputName);
