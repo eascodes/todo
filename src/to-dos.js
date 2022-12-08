@@ -84,6 +84,7 @@ export const changePriority = (project, toDo) => {
 }
 
 export const editToDo = (e) => {
+    //Remove edit button & append save button
     const buttonDiv = document.querySelector(".button-div");
     const editButton = document.querySelector(".button-div > button");
     const deleteButton = document.querySelector(".button-div > button + button");
@@ -96,6 +97,14 @@ export const editToDo = (e) => {
     const modalDiv = document.querySelector(".modal-div");
     const inputList = Array.from(document.querySelectorAll(".modal-div p"));
     
+    //Add input field to title section
+    const title = document.querySelector(".modal-header h3");
+    const titleContent = title.textContent;
+    title.innerHTML = "";
+    const titleInput = document.createElement("input");
+    titleInput.setAttribute("value", titleContent);
+    title.appendChild(titleInput);
+
     //Add input field to description section
     const desc = inputList[0];
     const descContent = desc.textContent;
@@ -162,13 +171,14 @@ export const editToDo = (e) => {
     }
 
     saveButton.addEventListener("click", () => {
-        saveUpdate(e, descInput, dateInput);
+        saveUpdate(e, titleInput, descInput, dateInput, titleContent);
     })
 
 }
 
-const saveUpdate = (e, descInput, dateInput) => {
-    let title = (document.querySelector(".modal-header h3")).textContent;
+const saveUpdate = (e, titleInput, descInput, dateInput, titleContent) => {
+    let title = titleContent;
+    const newTitle = titleInput.value;
     const desc = descInput.value;
     let date = format(parseISO(dateInput.value), 'MM-dd-yy');
     let priority = document.querySelector("#priority-select").value;
@@ -182,22 +192,23 @@ const saveUpdate = (e, descInput, dateInput) => {
         saveUpdate(e, descInput, dateInput);   
     });
     let updatedToDo = makeToDo(title, desc, date, priority, project);
-    updateLocalStorage(project, updatedToDo);
+    updateLocalStorage(project, updatedToDo, newTitle);
 }
 
-const updateLocalStorage = (project, updatedToDo) => {
+const updateLocalStorage = (project, updatedToDo, newTitle) => {
     for (let i=0; i<localStorage.length; i++) {
         //Loop through local storage to find correct project
         if (project.title === JSON.parse(localStorage.getItem(localStorage.key(i))).title) {
            //Set project from local storage as an object variable
             let parsed = JSON.parse(localStorage.getItem(localStorage.key(i)));
            //Loop through to do tasks to find correct task
-            for (let j=0; j<parsed.list.length; j++) {
+           for (let j=0; j<parsed.list.length; j++) {
                 if(parsed.list[j].title === updatedToDo.title) {
                     //Set original to do task as updated to do task object
                     parsed.list[j] = updatedToDo;
-            }
-           }
+                    parsed.list[j].title = newTitle;
+            } 
+           } 
            //Set original project in local storage as project object with updated task
            localStorage.setItem(localStorage.key(i), JSON.stringify(parsed));
         } 
