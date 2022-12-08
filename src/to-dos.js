@@ -158,7 +158,7 @@ export const editToDo = (e) => {
     projectInput.setAttribute("name", "project");
     projectInput.setAttribute("id", "project-select");
     project.appendChild(projectInput);
-    //
+    //Set the correct project default
     for(let i=0; i < localStorage.length; i++) {
         const option = document.createElement("option");
         const optionTitle = JSON.parse(localStorage.getItem(localStorage.key(i))).title;
@@ -171,12 +171,12 @@ export const editToDo = (e) => {
     }
 
     saveButton.addEventListener("click", () => {
-        saveUpdate(e, titleInput, descInput, dateInput, titleContent);
+        saveUpdate(titleInput, descInput, dateInput, titleContent);
     })
 
 }
 
-const saveUpdate = (e, titleInput, descInput, dateInput, titleContent) => {
+const saveUpdate = (titleInput, descInput, dateInput, titleContent) => {
     let title = titleContent;
     const newTitle = titleInput.value;
     const desc = descInput.value;
@@ -188,9 +188,6 @@ const saveUpdate = (e, titleInput, descInput, dateInput, titleContent) => {
             project = JSON.parse(localStorage.getItem(localStorage.key(i)));
         }
     }
-    e.target.removeEventListener("click", () => {
-        saveUpdate(e, descInput, dateInput);   
-    });
     let updatedToDo = makeToDo(title, desc, date, priority, project);
     updateLocalStorage(project, updatedToDo, newTitle);
 }
