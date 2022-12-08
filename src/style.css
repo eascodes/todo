@@ -55,13 +55,14 @@ body {
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
+    justify-items: flex-start;
+    align-items: flex-start;
     gap: 20px;
 }
 
 .card {
     background-color: #2a9d8f;
     width: 250px;
-    height: 250px;
     box-sizing: border-box;
     padding: 10px;
     display: flex;
