@@ -1,5 +1,5 @@
-import { clearContent } from "./clear";
-import { saveToDo } from "./to-dos";
+import { clearContent } from "./index.js";
+import { saveToDo } from "./to-dos.js";
 
 export const showToDoForm = () => {
     clearContent();
