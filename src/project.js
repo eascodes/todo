@@ -17,6 +17,7 @@ export const deleteProject = (project) => {
 }
 
 const buildProjectForm = () => {
+    //Build main form container
     const container = document.querySelector(".project-container");
     const form = document.createElement("form");
     const title = document.createElement("h3");

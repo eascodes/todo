@@ -57,6 +57,7 @@ const buildToDoForm = () => {
     form.addEventListener("submit", saveToDo);
 }
 
+//Build a question with a text input
 const buildTextInput = (container, liName, labelName, textContent, inputName, inputType) => {
     liName = document.createElement("li");
     const newLabel = document.createElement("label");
@@ -72,6 +73,7 @@ const buildTextInput = (container, liName, labelName, textContent, inputName, in
     liName.appendChild(inputName);
 }
 
+//Build 2 questions with radio option inputs
 const buildRadioInput = (container, category, label1, text1, input1, value1, label2, text2, input2, value2) => {
     const liName = document.createElement("li");
     container.appendChild(liName);
