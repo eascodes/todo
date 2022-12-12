@@ -1,5 +1,5 @@
-import { clearContent } from "./clear";
-import { loadPage } from "./pgload";
+import { clearContent } from "./index.js";
+import { loadPage } from "./pgload.js";
 
 export const makeProject = (title) => {
     let list = [];

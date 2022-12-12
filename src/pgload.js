@@ -1,6 +1,6 @@
 import { deleteProject } from './project.js';
 import './style.css';
-import { clearContent } from './clear.js';
+import { clearContent } from './index';
 import { buildModal } from './modal.js';
 import { reloadModal } from './modal.js';
 import { format } from 'date-fns';
