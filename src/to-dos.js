@@ -6,6 +6,7 @@ import { format, parseISO } from 'date-fns';
 export const saveToDo = (e) => {
     
     e.preventDefault();
+    //Save user input as variables
     const title = document.querySelector("#newTitle").value;
     const desc = document.querySelector("#desc").value;
     let date = document.querySelector("#date").value;
@@ -23,7 +24,9 @@ export const saveToDo = (e) => {
             project = JSON.parse(localStorage.getItem(localStorage.key(i)));
         }
     }
+    //Create to do task object from user input
     let newToDo = makeToDo(title, desc, date, priority, project.title);
+    //Push new to do task to selected project
     addToDo(project, newToDo);
 }
 
@@ -179,6 +182,7 @@ export const editToDo = (e) => {
 }
 
 const saveUpdate = (titleInput, descInput, dateInput, titleContent, oldProjectTitle) => {
+    //Set variables for user input
     let title = titleContent;
     const newTitle = titleInput.value;
     const desc = descInput.value;
@@ -190,7 +194,9 @@ const saveUpdate = (titleInput, descInput, dateInput, titleContent, oldProjectTi
             project = JSON.parse(localStorage.getItem(localStorage.key(i)));
         }
     }
+    //Make updated to do task object based on user input
     let updatedToDo = makeToDo(title, desc, date, priority, project.title);
+    //Update to do task & associated project in local storage
     updateLocalStorage(project, updatedToDo, newTitle, oldProjectTitle);
 }
 
