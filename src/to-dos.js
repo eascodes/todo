@@ -23,13 +23,13 @@ export const saveToDo = (e) => {
             project = JSON.parse(localStorage.getItem(localStorage.key(i)));
         }
     }
-    let newToDo = makeToDo(title, desc, date, priority, project);
+    let newToDo = makeToDo(title, desc, date, priority, project.title);
     addToDo(project, newToDo);
 }
 
-export const makeToDo = (title, description, dueDate, priority) => {
+export const makeToDo = (title, description, dueDate, priority, project) => {
     let status = 0;
-    return { title, description, dueDate, priority, status };
+    return { title, description, dueDate, priority, status, project };
 }
 
 export const addToDo = (project, toDo) => {
@@ -159,6 +159,7 @@ export const editToDo = (e) => {
     projectInput.setAttribute("id", "project-select");
     project.appendChild(projectInput);
     //Set the correct project default
+    let oldProjectTitle = "";
     for(let i=0; i < localStorage.length; i++) {
         const option = document.createElement("option");
         const optionTitle = JSON.parse(localStorage.getItem(localStorage.key(i))).title;
@@ -167,16 +168,17 @@ export const editToDo = (e) => {
         projectInput.appendChild(option);
         if (projectContent === option.textContent) {
             option.setAttribute("selected", "selected");
+            oldProjectTitle = option.textContent;
         }
     }
 
     saveButton.addEventListener("click", () => {
-        saveUpdate(titleInput, descInput, dateInput, titleContent);
+        saveUpdate(titleInput, descInput, dateInput, titleContent, oldProjectTitle);
     })
 
 }
 
-const saveUpdate = (titleInput, descInput, dateInput, titleContent) => {
+const saveUpdate = (titleInput, descInput, dateInput, titleContent, oldProjectTitle) => {
     let title = titleContent;
     const newTitle = titleInput.value;
     const desc = descInput.value;
@@ -188,11 +190,11 @@ const saveUpdate = (titleInput, descInput, dateInput, titleContent) => {
             project = JSON.parse(localStorage.getItem(localStorage.key(i)));
         }
     }
-    let updatedToDo = makeToDo(title, desc, date, priority, project);
-    updateLocalStorage(project, updatedToDo, newTitle);
+    let updatedToDo = makeToDo(title, desc, date, priority, project.title);
+    updateLocalStorage(project, updatedToDo, newTitle, oldProjectTitle);
 }
 
-const updateLocalStorage = (project, updatedToDo, newTitle) => {
+const updateLocalStorage = (project, updatedToDo, newTitle, oldProjectTitle) => {
     for (let i=0; i<localStorage.length; i++) {
         //Loop through local storage to find correct project
         if (project.title === JSON.parse(localStorage.getItem(localStorage.key(i))).title) {
@@ -210,6 +212,46 @@ const updateLocalStorage = (project, updatedToDo, newTitle) => {
            localStorage.setItem(localStorage.key(i), JSON.stringify(parsed));
         } 
     }
+
+    //If the user changed the project, update the projects to match change
+    if(oldProjectTitle != updatedToDo.project) {
+        changeProject(updatedToDo.project, oldProjectTitle, updatedToDo);
+    } 
     removeModal();
     loadPage();
+}
+
+//Update projects
+const changeProject = (newProject, oldProjectTitle, toDo) => {
+    let oldProject = "";
+    //Set new project variable to equal the project object from local storage
+    for(let i=0; i<localStorage.length; i++) {
+        if(newProject == JSON.parse(localStorage.getItem(localStorage.key(i))).title) {            
+            newProject = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        } 
+    }
+    for(let i=0; i<localStorage.length; i++) {
+        //Loop thru local storage to find old project
+        if(oldProjectTitle == JSON.parse(localStorage.getItem(localStorage.key(i))).title) {
+            oldProject = JSON.parse(localStorage.getItem(localStorage.key(i)));
+            for(let j=0; j<oldProject.list.length; j++) {
+                if (oldProject.list[j].title == toDo.title){
+                    //Delete task from old project
+                    oldProject.list.splice(j,1);
+                    if (newProject.title == toDo.project) {
+                        //Add task to new project
+                        newProject.list.push(toDo);
+                    }
+                }
+                //Set old project in local storage as updated project object with task removed
+                localStorage.setItem(localStorage.key(i), JSON.stringify(oldProject));
+                //Set new project in local storage as updated project object with task added
+                for(let k=0; k<localStorage.length; k++) {
+                    if(newProject.title == JSON.parse(localStorage.getItem(localStorage.key(k))).title) {
+                        localStorage.setItem(localStorage.key(k), JSON.stringify(newProject));
+                    }
+                }
+            }
+        }
+    }
 }

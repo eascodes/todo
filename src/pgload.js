@@ -8,11 +8,9 @@ import { format } from 'date-fns';
 
 export const loadPage = () => {
     clearContent();
-    //localStorage.clear();
 
     //Set default projects
     if (localStorage.length === 0) {
-        //const date = format(new Date(2023, 4, 2), 'yyyy-MM-dd');
         let backpackTrip = {
             list: [
                 {title: 'Plan route', description: 'Use guidebook to plan hiking route', dueDate: format(new Date("04/05/2023"), 'MM-dd-yy'), priority: 1, status: 0},
