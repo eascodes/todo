@@ -3,8 +3,6 @@ import { showToDoForm } from './to-doform.js';
 import { loadPage } from './pgload.js';
 import { showProjectForm } from './project.js';
 
-loadPage();
-
 //Clear all content from project container
 export const clearContent = () => {
     const content = document.querySelector(".project-container");
@@ -12,6 +10,8 @@ export const clearContent = () => {
         content.removeChild(content.lastElementChild);
     }
 }
+
+loadPage();
 
 //Add event listeners to nav bar buttons
 const homeButton = document.querySelector(".nav>ul>li");
