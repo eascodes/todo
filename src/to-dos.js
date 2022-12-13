@@ -103,7 +103,7 @@ export const editToDo = (e) => {
     //Add input field to title section
     const title = document.querySelector(".modal-header h3");
     const titleContent = title.textContent;
-    title.innerHTML = "";
+    title.textContent = "";
     const titleInput = document.createElement("input");
     titleInput.setAttribute("value", titleContent);
     title.appendChild(titleInput);
@@ -111,7 +111,7 @@ export const editToDo = (e) => {
     //Add input field to description section
     const desc = inputList[0];
     const descContent = desc.textContent;
-    desc.innerHTML = "";
+    desc.textContent = "";
     const descInput = document.createElement("input");
     descInput.setAttribute("value", descContent);
     desc.appendChild(descInput);
@@ -120,7 +120,7 @@ export const editToDo = (e) => {
     const date = inputList[1];
     let dateContent = new Date(date.textContent);
     dateContent = format((dateContent), 'yyyy-MM-dd')
-    date.innerHTML = "";
+    date.textContent = "";
     const dateInput = document.createElement("input");
     dateInput.setAttribute("type", "date");
     dateInput.setAttribute("value", dateContent);
@@ -129,7 +129,7 @@ export const editToDo = (e) => {
     //Add input field to priority section
     const priority = inputList[2];
     const priorityContent = priority.textContent;
-    priority.innerHTML = "";
+    priority.textContent = "";
     const priorityInput = document.createElement("select");
     priorityInput.setAttribute("name", "priority");
     priorityInput.setAttribute("id", "priority-select");
@@ -146,17 +146,17 @@ export const editToDo = (e) => {
     priority.appendChild(priorityInput);
     priorityInput.appendChild(low);
     //Set the correct priority default option
-    if (priorityContent === high.innerHTML) {
+    if (priorityContent === high.textContent) {
         high.setAttribute("selected","selected");
 
-    } else if (priorityContent === low.innerHTML) {
+    } else if (priorityContent === low.textContent) {
         low.setAttribute("selected","selected");
     } 
 
     //Add input field to project section
     const project = inputList[3];
     const projectContent = project.textContent;
-    project.innerHTML = "";
+    project.textContent = "";
     const projectInput = document.createElement("select");
     projectInput.setAttribute("name", "project");
     projectInput.setAttribute("id", "project-select");
