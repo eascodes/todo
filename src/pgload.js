@@ -85,8 +85,8 @@ function makeCard(obj) {
             priorityStar = "&#11088;"
         }
         if (obj.list[i].title != undefined) {
-            toDoTitle.innerHTML = obj.list[i].title + " " + priorityStar;
-            toDoDate.innerHTML = obj.list[i].dueDate;
+            toDoTitle.textContent = obj.list[i].title + " " + priorityStar;
+            toDoDate.textContent = obj.list[i].dueDate;
             leftDiv.appendChild(checkbox);
             leftDiv.appendChild(toDoTitle);
             toDoLine.appendChild(toDoDate);
@@ -103,7 +103,7 @@ function makeCard(obj) {
 
     //Append delete project button
     const deleteProjButton = document.createElement("button");
-    deleteProjButton.innerHTML = "Delete Project";
+    deleteProjButton.textContent = "Delete Project";
     card.appendChild(deleteProjButton);
     deleteProjButton.addEventListener("click", () => {
         deleteProject(obj);

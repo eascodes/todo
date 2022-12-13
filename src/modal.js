@@ -25,11 +25,11 @@ export const buildModal = (obj, proj) => {
   modalCheckbox.classList.add("checkbox");
 
   modalCheckbox.innerHTML = "&#9634;";
-  modalTitle.innerHTML = obj.title;
-  modalDescTitle.innerHTML = "Description:";
-  modalDesc.innerHTML = obj.description;
-  modalDateTitle.innerHTML = "Due Date:"
-  modalDate.innerHTML = obj.dueDate;
+  modalTitle.textContent = obj.title;
+  modalDescTitle.textContent = "Description:";
+  modalDesc.textContent = obj.description;
+  modalDateTitle.textContent = "Due Date:"
+  modalDate.textContent = obj.dueDate;
 
   modalHeader.appendChild(modalCheckbox);
   modalHeader.appendChild(modalTitle); 
@@ -40,7 +40,7 @@ export const buildModal = (obj, proj) => {
 
   //Set correct priority status content
   const modalPriorityTitle = document.createElement("h4");
-  modalPriorityTitle.innerHTML = "Priority:"
+  modalPriorityTitle.textContent = "Priority:"
   const modalPriority = document.createElement("p");
   
   let priorityLevel = "";
@@ -52,13 +52,13 @@ export const buildModal = (obj, proj) => {
     priorityStar = "&#9734;";
     priorityLevel = "Low priority";}
 
-  modalPriority.innerHTML = priorityLevel + " " + priorityStar;
+  modalPriority.textContent = priorityLevel + " " + priorityStar;
   const modalProjectTitle = document.createElement("h4");
-  modalProjectTitle.innerHTML = "Project:"
+  modalProjectTitle.textContent = "Project:"
   
   //Set correct project content
   const modalProject = document.createElement("p");
-  modalProject.innerHTML = proj.title;
+  modalProject.textContent = proj.title;
 
   //Add edit & delete buttons
   const modalEdit = document.createElement("button");
