@@ -1,259 +1,259 @@
 @font-face {
-    font-family: 'MyFont';
-    src: url('./LexendDeca-VariableFont_wght.ttf');
+  font-family: "MyFont";
+  src: url("./LexendDeca-VariableFont_wght.ttf");
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    color: white;
-    font-family: 'MyFont';
-    height: 100%;
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 6fr;
-    grid-template-rows: 1fr 6fr;
-    grid-template-areas: 
-        "header header"
-        "nav project-container";
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-family: "MyFont";
+  height: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  grid-template-rows: 1fr 6fr;
+  grid-template-areas:
+    "header header"
+    "nav project-container";
 }
 
 .header {
-    background-color: #e76f51;
-    grid-area: header;
-    text-align: center;
+  background-color: #e76f51;
+  grid-area: header;
+  text-align: center;
 }
 
 .nav {
-    background-color: #264653;
-    grid-area: nav;
-    min-width: 147px;
-} 
+  background-color: #264653;
+  grid-area: nav;
+  min-width: 147px;
+}
 
 .nav > ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    font-size: 1.3rem;
-    padding-left: 15px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 1.3rem;
+  padding-left: 15px;
 }
 
 .nav li {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .nav ul li:hover {
-    cursor: pointer;
-    color: #ffd56b;
+  cursor: pointer;
+  color: #ffd56b;
 }
 
 /*MAIN PROJECTS DISPLAY*/
 
 .project-container {
-    grid-area: project-container;
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-items: flex-start;
-    align-items: flex-start;
-    gap: 20px;
+  grid-area: project-container;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-items: flex-start;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 .card {
-    background-color: #2a9d8f;
-    min-width: 250px;
-    max-width: 350px;
-    box-sizing: border-box;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 10%;
+  background-color: #2a9d8f;
+  min-width: 250px;
+  max-width: 350px;
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 10%;
 }
 
 .card h3 {
-    margin: 0;
-    text-align: center;
-    min-height: 46px;
+  margin: 0;
+  text-align: center;
+  min-height: 46px;
 }
 
 .card ul {
-    list-style: none;
-    padding-left: 0;
+  list-style: none;
+  padding-left: 0;
 }
 
 .card li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .card li > div > p + p:hover {
-    color: #ffd56b;
-    cursor: pointer;
+  color: #ffd56b;
+  cursor: pointer;
 }
 
 .card > div > ul > li > div {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
 }
 
 .card p {
-    margin: 0;
+  margin: 0;
 }
 
 .card button {
-    margin-bottom: 10px;
-    margin-top: auto;
+  margin-bottom: 10px;
+  margin-top: auto;
 }
 
 .checkbox {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .checkbox:hover {
-    cursor: pointer;
-    color: #ffd56b;
+  cursor: pointer;
+  color: #ffd56b;
 }
 
 .strikethrough {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }
 
 /*FORMS*/
 
 form {
-    background-color: #2a9d8f;
-    padding: 20px 40px 20px 40px;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+  background-color: #2a9d8f;
+  padding: 20px 40px 20px 40px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 form div {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 form ul {
-    list-style: none;
-    margin: 0;
-    padding-left: 0;
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
 }
 
 form li {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 label[for="newTitle"],
 label[for="desc"],
 label[for="date"],
 label[for="select-option"] {
-    margin-right: 8px;
+  margin-right: 8px;
 }
 
 #low-priority {
-    margin-left: 8px;
+  margin-left: 8px;
 }
 
 label[for="project"] {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 form h3 {
-    margin-top: 0;
-    text-align: center;
-    font-size: 1.6rem;
+  margin-top: 0;
+  text-align: center;
+  font-size: 1.6rem;
 }
 
 button {
-   border: none;
-   text-decoration: none; 
-   background-color: #264653;
-   color: white;
-   padding: 5px 10px;
-   align-self: center;
-   margin-top: 15px;
+  border: none;
+  text-decoration: none;
+  background-color: #264653;
+  color: white;
+  padding: 5px 10px;
+  align-self: center;
+  margin-top: 15px;
 }
 
 button:hover {
-    cursor: pointer;
-    color: #264653;
-    background-color: white;
+  cursor: pointer;
+  color: #264653;
+  background-color: white;
 }
 
 /*MODAL*/
 
 .modal {
-    top: 0%;
-    left: 0%;
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    background: rgba(0, 0, 0, 0.5);
-  }
+  top: 0%;
+  left: 0%;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+}
 
 .child {
-    top: 50%;
-    left: 50%;
-    width: 350px;
-    height: 350px;
-    padding: 30px 30px;
-    background: #2a9d8f;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  height: 350px;
+  padding: 30px 30px;
+  background: #2a9d8f;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .modal-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
 .modal-header h3 {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .modal-div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto auto;
-    justify-items: start;
-    align-items: start;
-    column-gap: 20px;
-    row-gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto auto;
+  justify-items: start;
+  align-items: start;
+  column-gap: 20px;
+  row-gap: 10px;
 }
 
 .child h3 {
-    margin-top: 0;
-    align-self: center;
+  margin-top: 0;
+  align-self: center;
 }
 
 .child p,
 .child h4 {
-    margin: 0;
+  margin: 0;
 }
 
 .child h4 {
-    justify-self: end;
-    font-weight: bold;
+  justify-self: end;
+  font-weight: bold;
 }
 
 .star-filled {
-    color: yellow;
+  color: yellow;
 }
 
 .button-div {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    gap: 20px;
-    padding-top: 10px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 10px;
 }

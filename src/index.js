@@ -1,19 +1,11 @@
-import './style.css';
-import { showToDoForm } from './to-doform.js';
-import { loadPage } from './pgload.js';
-import { showProjectForm } from './project.js';
-
-//Clear all content from project container
-export const clearContent = () => {
-    const content = document.querySelector(".project-container");
-    while (content.lastElementChild) {
-        content.removeChild(content.lastElementChild);
-    }
-}
+import "./style.css";
+import { showToDoForm } from "./to-doform";
+import { loadPage } from "./pgload";
+import { showProjectForm } from "./project";
 
 loadPage();
 
-//Add event listeners to nav bar buttons
+// Add event listeners to nav bar buttons
 const homeButton = document.querySelector(".nav>ul>li");
 homeButton.addEventListener("click", loadPage);
 
