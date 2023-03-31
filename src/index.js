@@ -1,5 +1,5 @@
 import "./style.css";
-import { showToDoForm } from "./to-doform";
+import showToDoForm from "./to-doform";
 import { loadPage } from "./pgload";
 import { showProjectForm } from "./project";
 
